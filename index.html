@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine Surprise</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="hidden">Happy Valentine's Day! ❤️</h1>
+        <button id="revealButton">Click for a Surprise!</button>
+    </div>
+    <footer>
+        <p>Powered by Janith Suraweera</p>
+    </footer>
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('revealButton').addEventListener('click', function() {
+            document.body.classList.add('animated-bg');
+            const message = document.querySelector('h1');
+            message.classList.remove('hidden');
+            createFallingRoses();
+        });
+
+        function createFallingRoses() {
+            for (let i = 0; i < 30; i++) {
+                let rose = document.createElement('div');
+                rose.classList.add('rose');
+                rose.style.left = Math.random() * 100 + 'vw';
+                rose.style.animationDuration = Math.random() * 3 + 2 + 's';
+                document.body.appendChild(rose);
+                setTimeout(() => { rose.remove(); }, 5000);
+            }
+        }
+    </script>
+    <style>
+        @keyframes backgroundAnimation {
+            0% { background-color: pink; }
+            25% { background-color: red; }
+            50% { background-color: purple; }
+            75% { background-color: orange; }
+            100% { background-color: pink; }
+        }
+        .animated-bg {
+            animation: backgroundAnimation 5s infinite alternate;
+        }
+        .rose {
+            position: absolute;
+            top: 0;
+            width: 30px;
+            height: 30px;
+            background-image: url('https://cdn-icons-png.flaticon.com/512/415/415731.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</body>
+</html>
